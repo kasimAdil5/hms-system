@@ -28,11 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `doctors` (
-  `did` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `doctorname` varchar(50) NOT NULL,
+  `did` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `email` varchar(100) NOT NULL UNIQUE,
+  `doctorname` varchar(100) NOT NULL,
   `dept` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `doctors`
