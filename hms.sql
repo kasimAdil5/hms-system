@@ -52,17 +52,18 @@ INSERT INTO `doctors` (`did`, `email`, `doctorname`, `dept`) VALUES
 --
 
 CREATE TABLE `patients` (
-  `pid` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `slot` varchar(50) NOT NULL,
-  `disease` varchar(50) NOT NULL,
+  `pid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `email` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `slot` varchar(20) NOT NULL,
+  `disease` varchar(100) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `dept` varchar(50) NOT NULL,
-  `number` varchar(12) NOT NULL
+  `dept` varchar(100) NOT NULL,
+  `number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `patients`
