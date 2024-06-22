@@ -162,12 +162,15 @@ INSERT INTO `trigr` (`tid`, `pid`, `email`, `name`, `action`, `timestamp`) VALUE
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` varchar(50) NOT NULL,
-  `usertype` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(1000) NOT NULL
+  `email` varchar(100) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `Rol` ENUM('Hasta', 'Doktor') NOT NULL,
+  `onayli` BOOLEAN DEFAULT FALSE,
+  `kayit_tarihi` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `user`
