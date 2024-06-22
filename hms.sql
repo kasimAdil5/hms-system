@@ -28,12 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `doctors` (
-  `did` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `email` varchar(100) NOT NULL UNIQUE,
-  `doctorname` varchar(100) NOT NULL,
+  `did` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `doctorname` varchar(50) NOT NULL,
   `dept` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 --
 -- Dumping data for table `doctors`
@@ -53,18 +52,17 @@ INSERT INTO `doctors` (`did`, `email`, `doctorname`, `dept`) VALUES
 --
 
 CREATE TABLE `patients` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `email` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `gender` varchar(10) NOT NULL,
-  `slot` varchar(20) NOT NULL,
-  `disease` varchar(100) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  `slot` varchar(50) NOT NULL,
+  `disease` varchar(50) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `dept` varchar(100) NOT NULL,
-  `number` varchar(15) NOT NULL
+  `dept` varchar(50) NOT NULL,
+  `number` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 --
 -- Dumping data for table `patients`
@@ -164,15 +162,12 @@ INSERT INTO `trigr` (`tid`, `pid`, `email`, `name`, `action`, `timestamp`) VALUE
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL UNIQUE,
-  `password` varchar(255) NOT NULL,
-  `Rol` ENUM('Hasta', 'Doktor') NOT NULL,
-  `onayli` BOOLEAN DEFAULT FALSE,
-  `kayit_tarihi` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `usertype` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 --
 -- Dumping data for table `user`
