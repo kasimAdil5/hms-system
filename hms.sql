@@ -11,13 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
 -- Database: `hms`
 --
 
@@ -31,20 +24,20 @@ CREATE TABLE `doctors` (
   `did` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `email` varchar(100) NOT NULL UNIQUE,
   `doctorname` varchar(100) NOT NULL,
-  `dept` varchar(100) NOT NULL
+  `dept` varchar(100) NOT NULL,
+  CHECK (`email` LIKE '%_@__%.__%') -- E-posta formatı kontrolü
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 --
 -- Dumping data for table `doctors`
 --
 
 INSERT INTO `doctors` (`did`, `email`, `doctorname`, `dept`) VALUES
-(1, 'anees@gmail.com', 'anees', 'Cardiologists'),
-(2, 'amrutha@gmail.com', 'amrutha bhatta', 'Dermatologists'),
-(3, 'aadithyaa@gmail.com', 'aadithyaa', 'Anesthesiologists'),
-(4, 'anees@gmail', 'anees', 'Endocrinologists'),
-(5, 'aneeqah@gmail.com', 'aneekha', 'corona');
+(1, 'anees@gmail.com', 'Anees', 'Cardiology'),
+(2, 'amrutha@gmail.com', 'Amrutha Bhatta', 'Dermatology'),
+(3, 'aadithyaa@gmail.com', 'Aadithyaa', 'Anesthesiology'),
+(4, 'anees@endocrinology.com', 'Anees', 'Endocrinology'),
+(5, 'aneeqah@gmail.com', 'Aneeqah', 'Virology');
 
 -- --------------------------------------------------------
 
@@ -53,16 +46,17 @@ INSERT INTO `doctors` (`did`, `email`, `doctorname`, `dept`) VALUES
 --
 
 CREATE TABLE `patients` (
-  `pid` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `slot` varchar(50) NOT NULL,
-  `disease` varchar(50) NOT NULL,
+  `pid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `email` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
+  `slot` varchar(20) NOT NULL,
+  `disease` varchar(100) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `dept` varchar(50) NOT NULL,
-  `number` varchar(12) NOT NULL
+  `dept` varchar(100) NOT NULL,
+  `number` varchar(15) NOT NULL,
+  CHECK (`email` LIKE '%_@__%.__%') -- E-posta formatı kontrolü
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -70,31 +64,8 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`pid`, `email`, `name`, `gender`, `slot`, `disease`, `time`, `date`, `dept`, `number`) VALUES
-(2, 'anees1@gmail.com', 'anees1 rehman khan', 'Male1', 'evening1', 'cold1', '21:20:00', '2020-02-02', 'ortho11predict', '9874561110'),
-(5, 'patient@gmail.com', 'patien', 'Male', 'morning', 'fevr', '18:06:00', '2020-11-18', 'Cardiologists', '9874563210'),
-(7, 'patient@gmail.com', 'anees', 'Male', 'evening', 'cold', '22:18:00', '2020-11-05', 'Dermatologists', '9874563210'),
-(8, 'patient@gmail.com', 'anees', 'Male', 'evening', 'cold', '22:18:00', '2020-11-05', 'Dermatologists', '9874563210'),
-(9, 'aneesurrehman423@gmail.com', 'anees', 'Male', 'morning', 'cold', '17:27:00', '2020-11-26', 'Anesthesiologists', '9874563210'),
-(10, 'anees@gmail.com', 'anees', 'Male', 'evening', 'fever', '16:25:00', '2020-12-09', 'Cardiologists', '9874589654'),
-(15, 'khushi@gmail.com', 'khushi', 'Female', 'morning', 'corona', '20:42:00', '2021-01-23', 'Anesthesiologists', '9874563210'),
-(16, 'khushi@gmail.com', 'khushi', 'Female', 'evening', 'fever', '15:46:00', '2021-01-31', 'Endocrinologists', '9874587496'),
-(17, 'aneeqah@gmail.com', 'aneeqah', 'Female', 'evening', 'fever', '15:48:00', '2021-01-23', 'Endocrinologists', '9874563210');
-
---
--- Triggers `patients`
---
-DELIMITER $$
-CREATE TRIGGER `PatientDelete` BEFORE DELETE ON `patients` FOR EACH ROW INSERT INTO trigr VALUES(null,OLD.pid,OLD.email,OLD.name,'PATIENT DELETED',NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `PatientUpdate` AFTER UPDATE ON `patients` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.email,NEW.name,'PATIENT UPDATED',NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `patientinsertion` AFTER INSERT ON `patients` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.email,NEW.name,'PATIENT INSERTED',NOW())
-$$
-DELIMITER ;
+(1, 'anees1@gmail.com', 'Anees Rehman Khan', 'Male', 'evening', 'cold', '21:20:00', '2020-02-02', 'Orthopedics', '9874561110'),
+(2, 'patient@gmail.com', 'Patient', 'Male', 'morning', 'fever', '18:06:00', '2020-11-18', 'Cardiology', '9874563210');
 
 -- --------------------------------------------------------
 
@@ -103,7 +74,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -123,7 +94,7 @@ INSERT INTO `test` (`id`, `name`, `email`) VALUES
 --
 
 CREATE TABLE `trigr` (
-  `tid` int(11) NOT NULL,
+  `tid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `pid` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -140,7 +111,7 @@ INSERT INTO `trigr` (`tid`, `pid`, `email`, `name`, `action`, `timestamp`) VALUE
 (2, 11, 'anees@gmail.com', 'anees', 'PATIENT INSERTED', '2020-12-02 16:37:34'),
 (3, 10, 'anees@gmail.com', 'anees', 'PATIENT UPDATED', '2020-12-02 16:38:27'),
 (4, 11, 'anees@gmail.com', 'anees', 'PATIENT UPDATED', '2020-12-02 16:38:33'),
-(5, 12, 'anees@gmail.com', 'ANEES', 'Patient Deleted', '2020-12-02 16:40:40'),
+(5, 12, 'anees@gmail.com', 'ANEES', 'PATIENT DELETED', '2020-12-02 16:40:40'),
 (6, 11, 'anees@gmail.com', 'anees', 'PATIENT DELETED', '2020-12-02 16:41:10'),
 (7, 13, 'testing@gmail.com', 'testing', 'PATIENT INSERTED', '2020-12-02 16:50:21'),
 (8, 13, 'testing@gmail.com', 'testing', 'PATIENT UPDATED', '2020-12-02 16:50:32'),
@@ -163,21 +134,25 @@ INSERT INTO `trigr` (`tid`, `pid`, `email`, `name`, `action`, `timestamp`) VALUE
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` varchar(50) NOT NULL,
-  `usertype` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(1000) NOT NULL
+  `email` varchar(100) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `Rol` ENUM('Hasta', 'Doktor') NOT NULL,
+  `onayli` BOOLEAN DEFAULT FALSE,
+  `kayit_tarihi` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CHECK (`email` LIKE '%_@__%.__%') -- E-posta formatı kontrolü
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `usertype`, `email`, `password`) VALUES
-(13, 'anees', 'Doctor', 'anees@gmail.com', 'pbkdf2:sha256:150000$xAKZCiJG$4c7a7e704708f86659d730565ff92e8327b01be5c49a6b1ef8afdf1c531fa5c3'),
-(14, 'aneeqah', 'Patient', 'aneeqah@gmail.com', 'pbkdf2:sha256:150000$Yf51ilDC$028cff81a536ed9d477f9e45efcd9e53a9717d0ab5171d75334c397716d581b8'),
-(15, 'khushi', 'Patient', 'khushi@gmail.com', 'pbkdf2:sha256:150000$BeSHeRKV$a8b27379ce9b2499d4caef21d9d387260b3e4ba9f7311168b6e180a00db91f22');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `Rol`, `onayli`) VALUES
+(1, 'anees', 'anees@gmail.com', 'test', 'Doktor', FALSE),
+(2, 'aneeqah', 'aneeqah@gmail.com', 'test', 'Hasta', TRUE),
+(3, 'khushi', 'khushi@gmail.com', 'test','Hasta', TRUE);
+
 
 --
 -- Indexes for dumped tables
