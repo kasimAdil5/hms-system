@@ -1,5 +1,4 @@
 from flask import Flask,render_template,request,session,redirect,url_for,flash
-from flask_composer import Composer, RoleMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -302,6 +301,8 @@ def search():
 
             flash("Doctor is Not Available","danger")
     return render_template('index.html')
+
+
 
 
 
