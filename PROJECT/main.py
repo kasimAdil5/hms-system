@@ -91,6 +91,16 @@ class Trigr(db.Model):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
+    
+ 
     
 
 
@@ -304,6 +314,18 @@ def search():
 
 
 
+@app.route('/update', methods=['POST', 'GET'])
+@login_required
+def update():
+    if request.method == 'POST':
+        user = User.query.get(current_user.id)
+        user.username = request.form.get('username')
+        user.email = request.form.get('email')
+        user.password = request.form.get('password')
+        db.session.commit()
+        flash("User information updated successfully", "success")
+        return redirect(url_for('index'))
+    return render_template('update.html')
 
 
 
