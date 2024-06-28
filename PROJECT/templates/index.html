@@ -35,7 +35,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 1 -->
                 <div class="card shadow-sm border-primary mb-3">
-                  <img src="{{ url_for('static', filename='images/foto1.jpg') }}" class="card-img-top" alt="Doctor 1">
+                  <img src="{{ url_for('static', filename='images/foto1.jpg') }}" class="card-img-top lazyload" alt="Doctor 1">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-primary">Dr. John Doe</h5>
                     <p class="card-text">Cardiologist</p>
@@ -46,7 +46,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 2 -->
                 <div class="card shadow-sm border-success mb-3">
-                  <img src="{{ url_for('static', filename='images/pic2.jpg') }}" class="card-img-top" alt="Doctor 2">
+                  <img src="{{ url_for('static', filename='images/pic2.jpg') }}" class="card-img-top lazyload" alt="Doctor 2">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-success">Dr. Jane Smith</h5>
                     <p class="card-text">Neurologist</p>
@@ -57,7 +57,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 3 -->
                 <div class="card shadow-sm border-danger mb-3">
-                  <img src="{{ url_for('static', filename='images/foto3.jpg') }}" class="card-img-top" alt="Doctor 3">
+                  <img src="{{ url_for('static', filename='images/foto3.jpg') }}" class="card-img-top lazyload" alt="Doctor 3">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-danger">Dr. Michael Brown</h5>
                     <p class="card-text">Oncologist</p>
@@ -72,7 +72,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 4 -->
                 <div class="card shadow-sm border-warning mb-3">
-                  <img src="{{ url_for('static', filename='images/pic3.jpg') }}" class="card-img-top" alt="Doctor 4">
+                  <img src="{{ url_for('static', filename='images/pic3.jpg') }}" class="card-img-top lazyload" alt="Doctor 4">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-warning">Dr. Sarah White</h5>
                     <p class="card-text">Dermatologist</p>
@@ -83,7 +83,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 5 -->
                 <div class="card shadow-sm border-info mb-3">
-                  <img src="{{ url_for('static', filename='images/foto2.jpg') }}" class="card-img-top" alt="Doctor 5">
+                  <img src="{{ url_for('static', filename='images/foto2.jpg') }}" class="card-img-top lazyload" alt="Doctor 5">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-info">Dr. David Lee</h5>
                     <p class="card-text">Pediatrician</p>
@@ -94,7 +94,7 @@ HOME
               <div class="col-md-4 d-flex align-items-stretch">
                 <!-- Card 6 -->
                 <div class="card shadow-sm border-secondary mb-3">
-                  <img src="{{ url_for('static', filename='images/pic.jpg') }}" class="card-img-top" alt="Doctor 6">
+                  <img src="{{ url_for('static', filename='images/pic.jpg') }}" class="card-img-top lazyload" alt="Doctor 6">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-secondary">Dr. Emily Johnson</h5>
                     <p class="card-text">Psychiatrist</p>
@@ -121,7 +121,7 @@ HOME
 <div class="container my-5">
   <div class="row align-items-center">
     <div class="col-md-6">
-      <img src="{{ url_for('static', filename='images/resim.jpg') }}" class="img-fluid rounded shadow-sm" alt="Physical Therapy">
+      <img src="{{ url_for('static', filename='images/resim.jpg') }}" class="img-fluid rounded shadow-sm lazyload" alt="Physical Therapy">
     </div>
     <div class="col-md-6">
       <h2 class="text-primary">Physical Therapy</h2>
@@ -143,6 +143,36 @@ HOME
   <div class="my-4">
     <a href="#" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Sign Up</a>
     <a href="#" class="btn btn-outline-primary btn-lg">Log In</a>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="text-center">Testimonials</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <p class="card-text">"I had an excellent experience with Dr. John Doe. The booking process was easy and the care was exceptional!"</p>
+          <h5 class="card-title">- Patient A</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <p class="card-text">"Highly recommend this service. The therapists are professional and the treatment is effective."</p>
+          <h5 class="card-title">- Patient B</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <p class="card-text">"Booking an appointment was quick and easy. Dr. Jane Smith provided excellent care and answered all my questions."</p>
+          <h5 class="card-title">- Patient C</h5>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
