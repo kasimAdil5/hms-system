@@ -1,6 +1,30 @@
+:root {
+    --main-bg-color: #ffffff; 
+    --main-bg-gradient: linear-gradient(315deg, #1dc6cc 0%, #002a5c 74%); 
+    --main-font-family: 'Poppins', sans-serif;
+    --main-font-size: 18px;
+    --main-border-color: #002a5c; 
+    --main-shadow-color: rgba(0, 42, 92, 0.5); 
+    --main-hover-bg-color: #e0f7fa; 
+    --btn-hover-bg-color: #1dc6cc; 
+    --text-color: #002a5c; 
+    --label-color: #1dc6cc; 
+}
+
+body {
+    font-family: var(--main-font-family);
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
 .section-title {
     text-align: center;
-    /* padding-bottom: 30px; */
+    padding-bottom: 30px;
+    font-size: 2em;
+    color: var(--label-color);
 }
 
 .pricing .row {
@@ -11,71 +35,73 @@
     margin-top: 57px;
     border-radius: 8px 40px 40px 8px;
     transition: all 0.5s ease-in-out;
-    box-shadow: 1px 0px 8px 2px greenyellow;
+    box-shadow: 1px 0px 8px 2px var(--main-shadow-color);
+    background-color: var(--main-bg-color);
 }
 
-.bg-dark {
-    background-color: #63d471;
-    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 15px 4px var(--main-shadow-color);
+}
+
+.bg-dark, .jumbotron {
+    background-color: var(--main-bg-color);
+    background-image: var(--main-bg-gradient);
+    color: var(--text-color);
+    text-align: center;
 }
 
 label {
-    color: white;
+    color: var(--label-color);
     margin-top: 15px;
-    font-family: 'Itim', cursive;
+    font-family: var(--main-font-family);
 }
 
-.jumbotron {
-    background-color: #63d471;
-    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
-}
-
-#gender {
-    width: 300px;
-}
-
-#slot {
-    width: 300px;
-}
-
-#dept {
-    width: 300px;
-}
-
-.form-group input {
+#gender, #slot, #dept, .form-group input, option {
     width: 300px;
     border: none;
-    /* border-bottom: 1px solid purple; */
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid var(--main-border-color);
     outline: none;
-    font-size: 22px;
+    font-size: var(--main-font-size);
     margin-bottom: 5px;
-    font-family: 'Itim', cursive;
+    font-family: var(--main-font-family);
 }
 
 option {
     width: 400px;
-    border: none;
-    border-bottom: 2px solid green;
-    outline: none;
-    font-size: 22px;
-    margin-bottom: 5px;
 }
 
 .form-group input:hover {
-    background-color: ghostwhite;
+    background-color: var(--main-hover-bg-color);
 }
 
 #btn {
-    background-color: #63d471;
-    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+    background-color: var(--main-bg-color);
+    background-image: var(--main-bg-gradient);
     border-radius: 15px;
     border: none;
     position: relative;
     width: 300px;
+    color: var(--text-color);
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 #btn:hover {
-    background-color: white;
-    color: white;
+    background-color: var(--btn-hover-bg-color);
+    color: #ffffff;
+}
+
+.carousel-caption h5 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.2em;
+}
+a.navbar-brand {
+    font-size: 1.9em;
+    font-weight: bold;
+
 }
