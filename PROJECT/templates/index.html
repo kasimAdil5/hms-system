@@ -22,36 +22,83 @@ HOME
 <div class="container text-center my-5">
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <h1>Welcome to Hospital Reservation System</h1>
-      <p class="lead">Book appointments conveniently and manage your medical needs with ease.</p>
-      <div id="carouselExampleControls" class="carousel slide mb-4" data-ride="carousel">
+      <h1 class="animate__animated animate__fadeInDown">Welcome to Hospital Reservation System</h1>
+      <p class="lead animate__animated animate__fadeInUp">Book appointments conveniently and manage your medical needs with ease.</p>
+      <div id="carouselExampleControls" class="carousel slide mb-4" data-ride="carousel" data-interval="3000">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row">
-              <div class="col-md-4">
-                <div class="card">
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 1 -->
+                <div class="card shadow-sm border-primary mb-3">
                   <img src="{{ url_for('static', filename='images/foto1.jpg') }}" class="card-img-top" alt="Doctor 1">
-                  <div class="card-body">
-                    <h5 class="card-title">Dr. John Doe</h5>
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-primary">Dr. John Doe</h5>
                     <p class="card-text">Cardiologist</p>
+                    <a href="#" class="btn btn-outline-primary mt-auto">Book Now</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card">
-                  <img src="{{ url_for('static', filename='images/foto2.jpg') }}" class="card-img-top" alt="Doctor 2">
-                  <div class="card-body">
-                    <h5 class="card-title">Dr. Jane Smith</h5>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 2 -->
+                <div class="card shadow-sm border-success mb-3">
+                  <img src="{{ url_for('static', filename='images/pic2.jpg') }}" class="card-img-top" alt="Doctor 2">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-success">Dr. Jane Smith</h5>
                     <p class="card-text">Neurologist</p>
+                    <a href="#" class="btn btn-outline-success mt-auto">Book Now</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card">
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 3 -->
+                <div class="card shadow-sm border-danger mb-3">
                   <img src="{{ url_for('static', filename='images/foto3.jpg') }}" class="card-img-top" alt="Doctor 3">
-                  <div class="card-body">
-                    <h5 class="card-title">Dr. Michael Brown</h5>
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-danger">Dr. Michael Brown</h5>
                     <p class="card-text">Oncologist</p>
+                    <a href="#" class="btn btn-outline-danger mt-auto">Book Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 4 -->
+                <div class="card shadow-sm border-warning mb-3">
+                  <img src="{{ url_for('static', filename='images/pic3.jpg') }}" class="card-img-top" alt="Doctor 4">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-warning">Dr. Sarah White</h5>
+                    <p class="card-text">Dermatologist</p>
+                    <a href="#" class="btn btn-outline-warning mt-auto">Book Now</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 5 -->
+                <div class="card shadow-sm border-info mb-3">
+                  <img src="{{ url_for('static', filename='images/foto2.jpg') }}" class="card-img-top" alt="Doctor 5">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-info">Dr. David Lee</h5>
+                    <p class="card-text">Pediatrician</p>
+                    <a href="#" class="btn btn-outline-info mt-auto">Book Now</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <!-- Card 6 -->
+                <div class="card shadow-sm border-secondary mb-3">
+                  <img src="{{ url_for('static', filename='images/pic.jpg') }}" class="card-img-top" alt="Doctor 6">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-secondary">Dr. Emily Johnson</h5>
+                    <p class="card-text">Psychiatrist</p>
+                    <a href="#" class="btn btn-outline-secondary mt-auto">Book Now</a>
                   </div>
                 </div>
               </div>
@@ -67,12 +114,35 @@ HOME
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <p class="lead">Learn more about our clinic and meet our specialists.</p>
-      <div class="my-4">
-        <a href="#" class="btn btn-primary btn-lg mr-3">Sign Up</a>
-        <a href="#" class="btn btn-outline-primary btn-lg">Log In</a>
-      </div>
     </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <img src="{{ url_for('static', filename='images/resim.jpg') }}" class="img-fluid rounded shadow-sm" alt="Physical Therapy">
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-primary">Physical Therapy</h2>
+      <p class="lead">Get the best physical therapy services to recover and maintain your health. Our experienced therapists use modern techniques to ensure your swift recovery.</p>
+      <ul class="list-unstyled">
+        <li><i class="fas fa-check-circle text-success"></i> Personalized treatment plans</li>
+        <li><i class="fas fa-check-circle text-success"></i> Experienced and certified therapists</li>
+        <li><i class="fas fa-check-circle text-success"></i> State-of-the-art equipment</li>
+        <li><i class="fas fa-check-circle text-success"></i> Supportive and encouraging environment</li>
+      </ul>
+      <a href="#" class="btn btn-primary mt-3">Learn More</a>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center my-5">
+  <h2 class="animate__animated animate__fadeInUp">Join Us Today</h2>
+  <p class="lead animate__animated animate__fadeInUp">Experience exceptional healthcare services. Sign up now to book appointments with our specialists and manage your medical needs with ease.</p>
+  <div class="my-4">
+    <a href="#" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Sign Up</a>
+    <a href="#" class="btn btn-outline-primary btn-lg">Log In</a>
   </div>
 </div>
 
