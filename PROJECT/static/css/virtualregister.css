@@ -1,6 +1,6 @@
 :root {
     --main-bg-color: #ffffff; 
-    --main-bg-gradient: linear-gradient(315deg, #1dc6cc 0%, #002a5c 74%); 
+    --main-bg-gradient: linear-gradient(315deg, #107073 0%, #002a5c 74%); 
     --main-font-family: 'Poppins', sans-serif;
     --main-font-size: 18px;
     --main-border-color: #002a5c; 
@@ -9,6 +9,7 @@
     --btn-hover-bg-color: #1dc6cc; 
     --text-color: #002a5c; 
     --label-color: #1dc6cc; 
+    --main-bs-color: #363636;
 }
 
 body {
@@ -18,6 +19,15 @@ body {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s ease-in-out;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 5px solid #363636; 
+    border-radius: 20px;
 }
 
 .section-title {
