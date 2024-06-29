@@ -7,16 +7,16 @@ HOME
 {% block body %}
 
 {% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endfor %}
-{% endif %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endwith %}
 
 <div class="container text-center my-5">
@@ -32,9 +32,9 @@ HOME
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row">
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 1 -->
-                <div class="card shadow-sm border-primary mb-3">
+                <div class="card shadow-sm border-primary mb-4">
                   <img src="{{ url_for('static', filename='images/foto1.jpg') }}" class="card-img-top lazyload" alt="Doctor 1">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-primary">Dr. John Doe</h5>
@@ -43,9 +43,9 @@ HOME
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 2 -->
-                <div class="card shadow-sm border-success mb-3">
+                <div class="card shadow-sm border-success mb-4">
                   <img src="{{ url_for('static', filename='images/pic2.jpg') }}" class="card-img-top lazyload" alt="Doctor 2">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-success">Dr. Jane Smith</h5>
@@ -54,14 +54,14 @@ HOME
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 3 -->
-                <div class="card shadow-sm border-danger mb-3">
+                <div class="card shadow-sm border-danger mb-4">
                   <img src="{{ url_for('static', filename='images/foto3.jpg') }}" class="card-img-top lazyload" alt="Doctor 3">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-danger">Dr. Michael Brown</h5>
                     <p class="card-text">Oncologist</p>
-                    <a href="#" class="btn btn-outline-danger mt-auto">Book Now</a>
+                    <a href="/PROJECT/templates/booking.html" class="btn btn-outline-danger mt-auto">Book Now</a>
                   </div>
                 </div>
               </div>
@@ -69,9 +69,9 @@ HOME
           </div>
           <div class="carousel-item">
             <div class="row">
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 4 -->
-                <div class="card shadow-sm border-warning mb-3">
+                <div class="card shadow-sm border-warning mb-4">
                   <img src="{{ url_for('static', filename='images/pic3.jpg') }}" class="card-img-top lazyload" alt="Doctor 4">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-warning">Dr. Sarah White</h5>
@@ -80,9 +80,9 @@ HOME
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 5 -->
-                <div class="card shadow-sm border-info mb-3">
+                <div class="card shadow-sm border-info mb-4">
                   <img src="{{ url_for('static', filename='images/foto2.jpg') }}" class="card-img-top lazyload" alt="Doctor 5">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-info">Dr. David Lee</h5>
@@ -91,9 +91,9 @@ HOME
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch">
                 <!-- Card 6 -->
-                <div class="card shadow-sm border-secondary mb-3">
+                <div class="card shadow-sm border-secondary mb-4">
                   <img src="{{ url_for('static', filename='images/pic.jpg') }}" class="card-img-top lazyload" alt="Doctor 6">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-secondary">Dr. Emily Johnson</h5>
@@ -141,8 +141,8 @@ HOME
   <h2 class="animate__animated animate__fadeInUp">Join Us Today</h2>
   <p class="lead animate__animated animate__fadeInUp">Experience exceptional healthcare services. Sign up now to book appointments with our specialists and manage your medical needs with ease.</p>
   <div class="my-4">
-    <a href="#" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Sign Up</a>
-    <a href="#" class="btn btn-outline-primary btn-lg">Log In</a>
+    <a href="/signup" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Sign Up</a>
+    <a href="/login" class="btn btn-outline-primary btn-lg">Log In</a>
   </div>
 </div>
 
@@ -175,5 +175,85 @@ HOME
     </div>
   </div>
 </div>
+
+<div class="container my-5">
+  <h2 class="text-center">FAQs</h2>
+  <div class="accordion" id="faqAccordion">
+    <div class="card">
+      <div class="card-header" id="faqHeadingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+            How do I book an appointment?
+          </button>
+        </h5>
+      </div>
+      <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#faqAccordion">
+        <div class="card-body">
+          Booking an appointment is easy. You can do it through our website by clicking on the "Book Now" button on the profile of the doctor you want to visit.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="faqHeadingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+            What should I bring to my appointment?
+          </button>
+        </h5>
+      </div>
+      <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#faqAccordion">
+        <div class="card-body">
+          Please bring your ID card, insurance information (if applicable), and any medical records or test results related to your condition.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="faqHeadingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+            Can I cancel or reschedule my appointment online?
+          </button>
+        </h5>
+      </div>
+      <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#faqAccordion">
+        <div class="card-body">
+          Yes, you can easily cancel or reschedule your appointment through your account on our website. Just log in and go to your appointments section.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="text-center mb-4">Subscribe to Our Newsletter</h2>
+      <form action="/subscribe" method="POST">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Enter your email address" aria-describedby="button-addon2" required>
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="footer bg-dark text-white py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-4 text-center">Hospital Reservation System</h5>
+        <p class="text-center">&copy; 2024 All rights reserved.</p>
+        <p class="text-center">Designed by Younus kamal & Kasim adell</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
 
 {% endblock body %}
