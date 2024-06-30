@@ -5,145 +5,156 @@ Patients Booking
 {% endblock title %}
 
 {% block body %}
+<style>
+  .btn-dark {
+    background: #343a40;
+    border: none;
+    transition: background 0.3s ease;
+  }
+  .btn-dark:hover {
+    background: #23272b;
+  }
+  .form-control:focus {
+    border-color: #343a40;
+    box-shadow: 0 0 8px rgba(52, 58, 64, 0.3);
+  }
+  .alert {
+    position: relative;
+    padding: 1rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: .375rem;
+    margin-bottom: 1rem;
+  }
+  .alert-dismissible .close {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    color: inherit;
+  }
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+  }
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+  }
+  .alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+  }
+  .alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+  }
+  .alert-icon {
+    margin-right: 0.5rem;
+  }
+  .jumbotron {
+    padding: 2rem 2rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .icon {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+  .btn-icon {
+    padding: 8px 12px;
+  }
+</style>
 
-<div class="container mt-3">
-<div class="row">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="jumbotron">
+        <h2 class="text-center text-dark pb-2 mb-4 border-bottom">Book Your Slot</h2>
+        <br>
 
-<div class="col-md-5">
-<div class="card" style="width: 18rem;">
-  <img src="static/images/doc.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">HOSPITAL DOCTORS</h6>
-    <p class="card-text">Doctors Names</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Contact Us</a>
-    <a href="#" class="card-link">About US</a>
-  </div>
-</div>
-
-</div>
-
-<div class="col-md-5">
-
-<h4 class="text-center bg-dark text-white">Book Your Slot</h4>
-<br>
-
-
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-
-
-
-<form action="/patients" method="post" class="jumbotron">
-
- 
-
-  <div class="form-group">
-
-    <input type="email" class="form-control" id="email" value={{current_user.email}} name="email" required hidden> 
-  
-  </div>
-
-  <div class="form-group">
-  
-    <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
-  
-  </div>
-
- <div class="form-group">
-
-            
-                                      
-<select class="form-control" id="gender" name="gender"  required>
-        <option selected>Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Others">Others</option>
- 
-      </select>
- </div>
-
- <div class="form-group">
-
-            
-                                      
-<select class="form-control" id="slot" name="slot"  required>
-        <option selected>Slot</option>
-        <option value="morning">Morning</option>
-        <option value="evening">Evening</option>
-        <option value="night">Night</option>
- 
-      </select>
- </div>
-
-  <div class="form-group">
-    
-    <input type="time" class="form-control" name="time" placeholder="Time" required>
-  
-  </div>
-  <div class="form-group">
-    
-    <input type="date" class="form-control" name="date" placeholder="date" required>
-  
-  </div>
-  <div class="form-group">
-    
-    <input type="text" class="form-control" id="disease" name="disease" placeholder="Disease" required>
-  
-  </div>
-
-<div class="form-group">
-
-            
-                                      
-<select class="form-control" id="dept" name="dept"  required>
-        <option selected>Select Doctor Department</option>
-        {% for d in doct  %}
-        <option value="{{d.dept}}">{{d.dept}}</option>
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          <span class="alert-icon">
+            {% if category == 'success' %}
+            <i class="fa fa-check-circle icon"></i>
+            {% elif category == 'danger' %}
+            <i class="fa fa-exclamation-circle icon"></i>
+            {% elif category == 'warning' %}
+            <i class="fa fa-exclamation-triangle icon"></i>
+            {% elif category == 'info' %}
+            <i class="fa fa-info-circle icon"></i>
+            {% endif %}
+          </span>
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         {% endfor %}
-      </select>
- </div>
+        {% endif %}
+        {% endwith %}
 
-  <div class="form-group">
+        <form action="/patients" method="post">
+          <input type="email" class="form-control" id="email" value={{current_user.email}} name="email" required hidden> 
 
-    <input type="number" class="form-control" id="number" name="number" placeholder="Phone Number" required>
-  
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="gender" name="gender" required>
+              <option selected disabled>Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="slot" name="slot" required>
+              <option selected disabled>Slot</option>
+              <option value="morning">Morning</option>
+              <option value="evening">Evening</option>
+              <option value="night">Night</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="time" class="form-control" name="time" required>
+          </div>
+
+          <div class="form-group">
+            <input type="date" class="form-control" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="disease" name="disease" placeholder="Disease" required>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="dept" name="dept" required>
+              <option selected disabled>Select Doctor Department</option>
+              {% for d in doct %}
+              <option value="{{ d.dept }}">{{ d.dept }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="number" class="form-control" id="number" name="number" placeholder="Phone Number" required>
+          </div>
+
+          <button type="submit" id="btn" class="btn btn-dark btn-block">Book <i class="fa fa-calendar-check-o icon"></i></button>
+        </form>
+      </div>
+    </div>
   </div>
-
-  
-  <button type="submit" id="btn" class="btn btn-dark btn-sm btn-block">Book</button>
-</form>
-
 </div>
-
-
-</div>
-
-
-
-</div>
-
-
-
 
 {% endblock body %}
