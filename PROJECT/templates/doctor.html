@@ -1,68 +1,105 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Doctors
+    Doctors Booking
 {% endblock title %}
+
+{% block styles %}
+    <style>
+        /* تخصيص أسلوب الصفحة هنا */
+        body {
+            background-color: #f8f9fa; /* لون خلفية */
+            font-family: 'Roboto', sans-serif; /* الخط */
+        }
+        .card {
+            border: 1px solid #ced4da; /* حدود البطاقة */
+            border-radius: 8px; /* زوايا مستديرة */
+        }
+        .card-header {
+            background-color: #007bff; /* لون رأس البطاقة */
+            color: white; /* لون النص */
+            border-bottom: 0; /* لا حدود أسفل الرأس */
+            border-radius: 8px 8px 0 0; /* زوايا مستديرة للأعلى فقط */
+        }
+        .btn-primary {
+            background-color: #007bff; /* لون خلفية الزر */
+            border-color: #007bff; /* لون حدود الزر */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* لون خلفية الزر عند التحويم */
+            border-color: #0056b3; /* لون حدود الزر عند التحويم */
+        }
+        .form-control {
+            border-radius: 4px; /* زوايا مستديرة لحقل النموذج */
+        }
+        .form-group label {
+            font-weight: bold; /* خط الوزن الثقيل للتسمية */
+        }
+        .dropdown-menu {
+            border-radius: 4px; /* زوايا مستديرة للقائمة المستدلة */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل للقائمة المستدلة */
+        }
+        .dropdown-item {
+            padding: 8px 12px; /* تباعد داخلي للعناصر */
+        }
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: #f0f0f0; /* لون خلفية عند التحويم أو التركيز */
+        }
+    </style>
+{% endblock styles %}
 
 {% block body %}
 
-<div class="container">
-
-<div class="row">
-
-<div class="col-md-4"></div>
-<div class="col-md-4">
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<br>
-<h2 class="text-center text-white bg-dark">Doctors Booking</h2>
-
-<br>
-<form action="/doctors" method="post" class="jumbotron">
-
-<div class="form-group">
-
-<input type="email" class="form-control" name="email" value={{current_user.email}}  required>
-
-</div>
-
-<div class="form-group">
-
-<input type="text" class="form-control" name="doctorname" placeholder="Doctor Name" required>
-
-</div>
-
-
-<div class="form-group">
-
-<input type="text" class="form-control" name="dept" placeholder="Doctor Department" required>
-
-</div>
-
-
-  <button type="submit" class="btn btn-dark btn-sm btn-block">Book</button>
-
-</form>
-
-</div>
-<div class="col-md-4"></div>
-
-</div>
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Doctors Booking</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/doctors" method="post">
+                        {% with messages=get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <div class="form-group">
+                            <label for="email">Doctor Email</label>
+                            <input type="email" id="email" class="form-control" name="email" value="{{ current_user.email }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doctorname">Doctor Name</label>
+                            <input type="text" id="doctorname" class="form-control" name="doctorname" placeholder="Doctor Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dept">Doctor Department</label>
+                            <select id="dept" class="form-control" name="dept" required>
+                                <option value="">Select Department</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Endocrinology">Endocrinology</option>
+                                <option value="Gastroenterology">Gastroenterology</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock body %}
