@@ -151,4 +151,45 @@
     .footer .social-icons a:hover {
         color: #1dc6cc;
     }
-    
+
+
+.nav-link {
+    position: relative;
+    color: #333;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    background-color: #fff;
+    min-width: 180px;
+    padding: 0.5rem 0;
+    display: none; 
+}
+
+.dropdown-menu.show {
+    display: block; 
+}
+
+.dropdown-item {
+    color: #333;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--text-color);
+    color: var(--main-bg-color);
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+    border-top: 1px solid #ccc;
+}
+
+.user-name {
+    margin-right: 10px;
+}
+
+
