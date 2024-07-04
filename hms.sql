@@ -164,6 +164,7 @@ INSERT INTO `user` (`id`, `username`, `usertype`, `email`, `password`) VALUES
 (19, 'aadithyaa', 'Doctor', 'aadithyaa@gmail.com', 'test'),
 (20, 'an', 'Doctor', 'an@gmail.com', 'test');
 
+
 --
 -- Indexes for dumped tables
 --

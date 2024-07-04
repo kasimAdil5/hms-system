@@ -99,10 +99,6 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('500.html'), 500
-    
- 
-    
-
 
 @app.route('/doctors',methods=['POST','GET'])
 def doctors():
@@ -328,6 +324,85 @@ def update():
     return render_template('update.html')
 
 
+        # NEW CODE UPDATED
+        
 
-app.run(debug=True)    
+class ContactMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.String(200), nullable=False) 
+    message = db.Column(db.Text, nullable=False)
+
+@app.route("/admin_panel")
+def admin_panel():
+    # جلب كل رسائل الاتصال من قاعدة البيانات
+    contact_messages = ContactMessage.query.all()
+
+    # تحقق من البيانات التي تم جلبها
+    print("Total Contact Messages:", len(contact_messages))
+    for message in contact_messages:
+        print(f"Message ID: {message.id}, Name: {message.name}, Email: {message.email}, Phone: {message.phone}, Address: {message.address}, Message: {message.message}")
+
+    return render_template("admin_panel.html", title="Admin Panel", current_user={"username": "Admin"}, contact_messages=contact_messages)
+def about():
+    return render_template("admin_panel.html", title="admin_panel")
+def index():
+    return render_template("index.html")
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        address = request.form.get("address")  # استخراج حقل العنوان من النموذج
+        message = request.form.get("message")
+
+        # إنشاء كائن رسالة وحفظه في قاعدة البيانات
+        new_message = ContactMessage(name=name, email=email, phone=phone, address=address, message=message)
+        db.session.add(new_message)
+        db.session.commit()
+
+        return redirect(url_for("thank_you"))
+
+    return render_template("contact.html")
+
+@app.route("/thank_you")
+def thank_you():
+    flash("Thank you for submitting We will try to respond as soon as possible ","success")
+    return render_template('index.html')
+
+
+@app.route("/submit_contact_form", methods=["POST"])
+def submit_contact_form():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        address = request.form.get("address")
+        message = request.form.get("message")
+
+        # هنا يمكنك إضافة التعامل مع البيانات كما ترغب، مثل حفظها في قاعدة البيانات
+        new_message = ContactMessage(name=name, email=email, phone=phone, address=address, message=message)
+        db.session.add(new_message)
+        db.session.commit()
+
+        # اتجاه المستخدم إلى صفحة شكر بعد إرسال النموذج بنجاح
+        return redirect(url_for("thank_you"))
+
+
+
+    # search ________________________________________________________
+# @app.route('/admin_search', methods=['GET', 'POST'])
+# def admin_panel():
+#     if request.method == 'POST':
+#         search_query = request.form.get('search', '')
+#         return redirect(url_for('admin_panel_search', search=search_query))
+#     contact_messages = ContactMessage.query.all()
+#     return render_template('admin_panel.html', contact_messages=contact_messages)
+
+if __name__ == "__main__":
+    app.run(debug=True)
 

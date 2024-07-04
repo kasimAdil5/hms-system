@@ -40,6 +40,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/details">Patients Details Dr.</a>
                 </li>
+                {% elif current_user.usertype == "admin" %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_panel">İletişim</a>
+                </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="/patients">Patients Booking</a>
@@ -48,6 +52,7 @@
                     <a class="nav-link" href="/bookings">Booking Details</a>
                 </li>
                 {% endif %}
+                
                 {% if current_user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,10 +77,12 @@
                     </div>
                 </li>
                 {% endif %}
+                
             </ul>
         </div>
+        
     </nav>
-
+    
     {% block body %}
     {% endblock body %}
 
